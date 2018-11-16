@@ -12,8 +12,9 @@ export PATH="$JAVA_HOME/bin:$PATH"
 # Install latest cmake
 wget https://cmake.org/files/v3.12/cmake-3.12.4-Linux-x86_64.sh
 chmod 755 cmake-3.12.4-Linux-x86_64.sh
-./cmake-3.12.4-Linux-x86_64.sh --skip-license
-export PATH="/app/cmake-3.12.4-Linux-x86_64/bin:$PATH"
+mkdir -p cmake
+./cmake-3.12.4-Linux-x86_64.sh --skip-license --prefix=cmake
+export PATH="/app/cmake/bin:$PATH"
 
 # Build lightGBM java wrapper
 git clone --recursive https://github.com/Microsoft/LightGBM
