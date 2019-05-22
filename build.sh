@@ -19,6 +19,7 @@ export PATH="/app/cmake/bin:$PATH"
 # Build lightGBM java wrapper
 git clone --recursive https://github.com/Microsoft/LightGBM
 cd LightGBM
+git checkout tags/v2.2.2
 mkdir -p build
 cd build
 cmake -DUSE_SWIG=ON -DUSE_OPENMP=OFF ..
