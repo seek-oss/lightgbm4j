@@ -1,7 +1,7 @@
 
 plugins {
     id 'com.adtran.scala-multiversion-plugin' version '1.0.35'
-    id 'com.github.maiflai.scalatest' version '0.23'
+    id 'com.github.maiflai.scalatest' version '0.25'
 }
 
 apply plugin: 'scala'
