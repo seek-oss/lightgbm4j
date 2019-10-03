@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Checkout a specific LightGBM version and build it with the SWIG wrapper and no OpenMP
-# See https://lightgbm.readthedocs.io/en/latest/Installation-Guide.html
+# Checkout a specific LightGBM version/commit and build it with the SWIG wrapper and no OpenMP
+# Reference https://lightgbm.readthedocs.io/en/latest/Installation-Guide.html
 
 set -oe pipefail
 

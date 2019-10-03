@@ -15,4 +15,7 @@ RUN wget "https://github.com/Kitware/CMake/releases/download/v3.12.4/cmake-3.12.
 WORKDIR /app
 
 COPY build-lightgbm.sh .
-RUN ./build-lightgbm.sh v2.2.2
+
+ARG version
+ENV version ${version}
+RUN ./build-lightgbm.sh $version
