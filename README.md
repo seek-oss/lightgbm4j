@@ -12,6 +12,13 @@ LightGBM4J:
 
 See the [tests](src/test/scala/au/com/seek/lightgbm4j) for example usage.
 
+## Usage
+
+`make test` run tests
+`make build-libs-linux version=v2.2.2` build native libs for linux v2.2.2
+`make build-libs-mac version=v2.2.2` build native libs for mac v2.2.2
+
+
 ## Who's using this?
 
 Used in production at [SEEK](https://www.seek.com.au).
