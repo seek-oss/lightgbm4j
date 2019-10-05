@@ -14,9 +14,9 @@ See the [tests](src/test/scala/au/com/seek/lightgbm4j) for example usage.
 
 ## Usage
 
-`make test` run tests
-`make build-libs-linux version=v2.2.2` build native libs for linux v2.2.2
-`make build-libs-mac version=v2.2.2` build native libs for mac v2.2.2
+`make test` run tests  
+`make build-libs-linux version=v2.2.2` build specific version of native libs for linux  
+`make build-libs-mac version=v2.2.2` build specific version of native libs for mac  
 
 
 ## Who's using this?
