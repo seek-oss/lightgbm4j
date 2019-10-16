@@ -16,21 +16,17 @@ help:
 test:
 	$(gradle) check
 
+# extract the currently targeted version of LightGBM
+lightGbmVersion := v$(shell grep lightGbmVersion gradle.properties | sed 's/.*lightGbmVersion=//')
+
 ## build native libraries for mac
-build-libs-mac: require-version
-	cd build-libs && rm -rf LightGBM && ./build-lightgbm.sh $(version)
+build-libs-mac:
+	cd build-libs && rm -rf LightGBM && ./build-lightgbm.sh $(lightGbmVersion)
 	cp build-libs/LightGBM/build/com/microsoft/ml/lightgbm/osx/x86_64/* src/main/resources/lib_lightgbm/mac_osx/
 
 ## build native libraries for linux
-build-libs-linux: require-version
-	docker build build-libs/. --tag amazonlinux-lightgbm --build-arg version=$(version)
+build-libs-linux:
+	docker build build-libs/. --tag amazonlinux-lightgbm --build-arg version=$(lightGbmVersion)
 	id=$$(docker create amazonlinux-lightgbm) && \
 		docker cp $$id:/app/LightGBM/build/com/microsoft/ml/lightgbm/linux/x86_64 src/main/resources/lib_lightgbm/ && \
 		docker rm -v $$id
-
-require-version:
-	$(call require_var,version,. Provide version eg: version=v2.2.2)
-
-require_var = $(foreach 1,$1,$(__require_var))
-__require_var = $(if $(value $1),,\
-	$(error Missing $1$(if $(value 2),$(strip $2))))
