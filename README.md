@@ -1,6 +1,6 @@
 # LightGBM4J
 
-A JVM interface 🌯 for [LightGBM](https://github.com/microsoft/LightGBM), written in Scala, for inference in production.
+A JVM interface for [LightGBM](https://github.com/microsoft/LightGBM), written in Scala, for inference in production.
 
 Hopefully makes it a littler easier to use LightGBM from Java/Scala compared to using the SWIG wrappers directly.
 

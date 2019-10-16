@@ -1,4 +1,3 @@
-
 plugins {
     id 'com.adtran.scala-multiversion-plugin' version '1.0.35'
     id 'com.github.maiflai.scalatest' version '0.25'
@@ -6,9 +5,10 @@ plugins {
 
 apply plugin: 'scala'
 apply plugin: 'idea'
-apply plugin: 'maven-publish'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
-group = 'au.com.seek'
+group = 'com.github.seek-oss'
 
 repositories {
     mavenLocal()
@@ -19,7 +19,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile (
+    compile(
         "org.scala-lang:scala-library:%scala-version%",
         "com.typesafe.scala-logging:scala-logging_%%:3.9.0",
         'commons-io:commons-io:2.6',
@@ -38,17 +38,67 @@ dependencies {
     )
 }
 
+task javadocJar(type: Jar) {
+    from javadoc
+    classifier 'javadoc'
+}
+
 task sourcesJar(type: Jar) {
     from sourceSets.main.allScala
     classifier 'sources'
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifactId 'lightgbmlib'
-            from components.java
-            artifact sourcesJar
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: nexusSeekOssUsername, password: project.nexusSeekOssPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: project.nexusSeekOssUsername, password: project.nexusSeekOssPassword)
+            }
+
+            pom.project {
+                name = 'LightGBM4J'
+                packaging 'jar'
+                description = 'A JVM interface for LightGBM, written in Scala, for inference in production.'
+                url = 'https://github.com/seek-oss/lightgbm4j'
+
+                scm {
+                    connection = 'scm:git:https://github.com/seek-oss/lightgbm4j.git'
+                    developerConnection = 'scm:git:https://github.com/seek-oss/lightgbm4j.git'
+                    url = 'https://github.com/seek-oss/lightgbm4j'
+                }
+
+                developers {
+                    developer {
+                        name 'Oliver Hutchison'
+                        email 'ohutchison@seek.com.au'
+                        organization 'SEEK Limited'
+                    }
+                    developer {
+                        name 'Oliver Mannion'
+                    }
+                }
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/seek-oss/lightgbm4j/blob/master/LICENSE'
+                    }
+                }
+            }
         }
     }
 }
@@ -85,5 +135,4 @@ task checkVersion {
     }
 }
 
-publish.dependsOn(checkVersion, build)
 build.mustRunAfter(checkVersion)
