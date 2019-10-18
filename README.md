@@ -1,4 +1,5 @@
 ![](https://github.com/seek-oss/lightgbm4j/workflows/CI/badge.svg)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.seek-oss/lightgbm4j_2.12.svg?label=Maven%20Central)](https://search.maven.org/artifact/com.github.seek-oss/lightgbm4j_2.12/)
 
 # LightGBM4J
 
