@@ -30,7 +30,7 @@ dependencies {
 
     testCompile(
         'junit:junit:4.12',
-        "org.scalatest:scalatest_%%:3.0.5"
+        "org.scalatest:scalatest_%%:3.1.0"
     )
 
     testRuntime(
