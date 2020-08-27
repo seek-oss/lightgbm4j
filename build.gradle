@@ -1,5 +1,5 @@
 plugins {
-    id 'com.adtran.scala-multiversion-plugin' version '1.0.35'
+    id 'com.adtran.scala-multiversion-plugin' version '1.0.36'
     id 'com.github.maiflai.scalatest' version '0.26'
 }
 
