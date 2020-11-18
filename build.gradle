@@ -24,7 +24,7 @@ dependencies {
         "org.scala-lang:scala-library:%scala-version%",
         "com.typesafe.scala-logging:scala-logging_%%:3.9.2",
         'commons-io:commons-io:2.8.0',
-        'commons-lang:commons-lang:2.6',
+        'commons-lang:commons-lang:20030203.000129',
         "com.microsoft.ml.lightgbm:lightgbmlib:${lightGbmVersion}${lightGbmJavaSubVersion}"
     )
 
