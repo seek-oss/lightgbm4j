@@ -30,7 +30,7 @@ dependencies {
 
     testCompile(
         'junit:junit:4.13.2',
-        "org.scalatest:scalatest_%%:3.0.5"
+        "org.scalatest:scalatest_%%:3.3.0-SNAP3"
     )
 
     testRuntime(
